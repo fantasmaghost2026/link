@@ -97,43 +97,42 @@
   isolation: isolate;
 }
 
-/* Resplandor difuso detras del borde */
+/* Resplandor difuso: SOLO por fuera del borde, nunca en el centro */
 .edge-lighting::after {
   content: "";
   position: absolute;
-  inset: -5px;
+  inset: -6px;
   border-radius: inherit;
   z-index: -2;
   background: conic-gradient(
     from var(--edge-angle),
-    transparent 0%,
-    transparent 58%,
-    var(--color-accent) 74%,
-    var(--color-primary) 84%,
-    var(--color-accent) 90%,
-    transparent 98%
+    var(--color-accent),
+    var(--color-primary),
+    var(--color-accent),
+    var(--color-primary),
+    var(--color-accent)
   );
-  filter: blur(13px);
-  opacity: 0.85;
-  animation: edge-lighting-spin 3s linear infinite;
+  filter: blur(12px);
+  opacity: 0.55;
+  animation: edge-lighting-spin 4s linear infinite;
 }
 
-/* Linea de luz nitida sobre el borde */
+/* Linea de luz que ilumina TODO el borde de forma constante.
+   El mask deja el centro totalmente transparente para no tapar el texto. */
 .edge-lighting::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   z-index: -1;
-  padding: 2px;
+  padding: 2.5px;
   background: conic-gradient(
     from var(--edge-angle),
-    transparent 0%,
-    transparent 58%,
-    var(--color-accent) 76%,
-    var(--color-primary) 85%,
-    var(--color-accent) 91%,
-    transparent 98%
+    var(--color-accent),
+    var(--color-primary),
+    color-mix(in oklch, var(--color-accent) 60%, white),
+    var(--color-primary),
+    var(--color-accent)
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -143,7 +142,7 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
-  animation: edge-lighting-spin 3s linear infinite;
+  animation: edge-lighting-spin 4s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,6 +1,6 @@
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
+import { HeroCarousel } from "@/components/hero-carousel"
 
 const highlights = [
   "Ventas en segundos",
@@ -58,19 +58,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative">
-          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-primary/10">
-            <Image
-              src="/uplink-dashboard.png"
-              alt="Panel de Uplink mostrando ventas, inventario y reportes"
-              width={1200}
-              height={900}
-              className="h-auto w-full"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
-          </div>
-        </div>
+        <HeroCarousel />
       </div>
     </section>
   )
