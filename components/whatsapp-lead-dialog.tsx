@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { X, MessageCircle } from "lucide-react"
 
 // Numero de WhatsApp del agente en Cuba (solo digitos, con codigo de pais).
-const WHATSAPP_NUMBER = "19454078640"
+const WHATSAPP_NUMBER = "19453912178"
 
 type WhatsAppLeadDialogProps = {
   open: boolean

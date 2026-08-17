@@ -40,9 +40,10 @@ const plans = [
     description: "Automatiza y optimiza tu negocio.",
     features: [
       "Instalación, configuración y capacitación inicial",
-      "Uso ilimitado y permanente de la licencia",
+      "Licencia renovable cada 1 año",
+      "Licencia renovable cada 365 días",
       "Puntos de venta ilimitados",
-      "Disponible desde cualquier lugar",
+      { text: "Disponible desde cualquier lugar", highlight: true },
     ],
     cta: "Elegir Premium",
     featured: false,
@@ -101,14 +102,36 @@ export function Pricing() {
               </div>
 
               <ul className="mt-8 flex flex-col gap-3">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm text-foreground">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Check className="h-3 w-3" />
-                    </span>
-                    <span className="leading-relaxed">{feature}</span>
-                  </li>
-                ))}
+                {plan.features.map((feature) => {
+                  const text =
+                    typeof feature === "string" ? feature : feature.text
+                  const highlight =
+                    typeof feature === "string" ? false : feature.highlight
+
+                  return (
+                    <li
+                      key={text}
+                      className="flex items-start gap-3 text-sm text-foreground"
+                    >
+                      <span
+                        className={
+                          highlight
+                            ? "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-sm shadow-primary/40"
+                            : "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"
+                        }
+                      >
+                        <Check className="h-3 w-3" />
+                      </span>
+                      {highlight ? (
+                        <span className="feature-highlight leading-relaxed">
+                          {text}
+                        </span>
+                      ) : (
+                        <span className="leading-relaxed">{text}</span>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
 
               <Button
