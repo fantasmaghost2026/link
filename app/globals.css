@@ -75,3 +75,80 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ============================================================
+   Edge Lighting (estilo Samsung) — luz constante que recorre
+   el borde de la tarjeta destacada.
+   ============================================================ */
+@property --edge-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes edge-lighting-spin {
+  to {
+    --edge-angle: 360deg;
+  }
+}
+
+.edge-lighting {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Resplandor difuso detras del borde */
+.edge-lighting::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  z-index: -2;
+  background: conic-gradient(
+    from var(--edge-angle),
+    transparent 0%,
+    transparent 58%,
+    var(--color-accent) 74%,
+    var(--color-primary) 84%,
+    var(--color-accent) 90%,
+    transparent 98%
+  );
+  filter: blur(13px);
+  opacity: 0.85;
+  animation: edge-lighting-spin 3s linear infinite;
+}
+
+/* Linea de luz nitida sobre el borde */
+.edge-lighting::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--edge-angle),
+    transparent 0%,
+    transparent 58%,
+    var(--color-accent) 76%,
+    var(--color-primary) 85%,
+    var(--color-accent) 91%,
+    transparent 98%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: edge-lighting-spin 3s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edge-lighting::before,
+  .edge-lighting::after {
+    animation-duration: 8s;
+  }
+}

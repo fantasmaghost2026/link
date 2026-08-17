@@ -11,6 +11,7 @@ type WhatsAppLeadDialogProps = {
   open: boolean
   planName: string | null
   planPrice?: string
+  planPriceNote?: string
   onClose: () => void
 }
 
@@ -18,6 +19,7 @@ export function WhatsAppLeadDialog({
   open,
   planName,
   planPrice,
+  planPriceNote,
   onClose,
 }: WhatsAppLeadDialogProps) {
   const [name, setName] = useState("")
@@ -60,7 +62,7 @@ export function WhatsAppLeadDialog({
     const message = [
       "Hola, quiero solicitar Uplink.",
       "",
-      `Modalidad de pago: ${planName}${planPrice ? ` (${planPrice})` : ""}`,
+      `Modalidad de pago: ${planName}${planPrice ? ` (${planPrice}${planPriceNote ? ` ${planPriceNote}` : ""})` : ""}`,
       `Nombre: ${name.trim()}`,
       `Número de móvil: ${phone.trim()}`,
       `Dirección: ${address.trim()}`,
@@ -112,6 +114,7 @@ export function WhatsAppLeadDialog({
           {planPrice ? (
             <span className="ml-2 text-lg font-semibold text-muted-foreground">
               {planPrice}
+              {planPriceNote ? ` ${planPriceNote}` : ""}
             </span>
           ) : null}
         </h2>

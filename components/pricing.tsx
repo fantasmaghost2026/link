@@ -51,7 +51,7 @@ const plans = [
 
 export function Pricing() {
   const [selectedPlan, setSelectedPlan] = useState<
-    { name: string; price: string } | null
+    { name: string; price: string; priceNote: string } | null
   >(null)
 
   return (
@@ -75,9 +75,11 @@ export function Pricing() {
             <div
               key={plan.name}
               className={
-                plan.featured
-                  ? "relative flex flex-col rounded-2xl border-2 border-primary bg-card p-6 shadow-xl shadow-primary/10 sm:p-8"
-                  : "relative flex flex-col rounded-2xl border border-border bg-card p-6 sm:p-8"
+                plan.name === "Elite"
+                  ? "edge-lighting relative flex flex-col rounded-2xl border-2 border-primary bg-card p-6 shadow-xl shadow-primary/10 sm:p-8"
+                  : plan.featured
+                    ? "relative flex flex-col rounded-2xl border-2 border-primary bg-card p-6 shadow-xl shadow-primary/10 sm:p-8"
+                    : "relative flex flex-col rounded-2xl border border-border bg-card p-6 sm:p-8"
               }
             >
               {plan.featured && (
@@ -116,7 +118,11 @@ export function Pricing() {
                 variant={plan.featured ? "default" : "outline"}
                 className="mt-8 w-full"
                 onClick={() =>
-                  setSelectedPlan({ name: plan.name, price: plan.price })
+                  setSelectedPlan({
+                    name: plan.name,
+                    price: plan.price,
+                    priceNote: plan.priceNote,
+                  })
                 }
               >
                 {plan.cta}
@@ -130,6 +136,7 @@ export function Pricing() {
         open={selectedPlan !== null}
         planName={selectedPlan?.name ?? null}
         planPrice={selectedPlan?.price}
+        planPriceNote={selectedPlan?.priceNote}
         onClose={() => setSelectedPlan(null)}
       />
     </section>
