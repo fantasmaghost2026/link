@@ -76,7 +76,7 @@ export function Pricing() {
               key={plan.name}
               className={
                 plan.name === "Elite"
-                  ? "edge-lighting relative flex flex-col rounded-2xl border-2 border-primary bg-card p-6 shadow-xl shadow-primary/10 sm:p-8"
+                  ? "elite-highlight relative flex flex-col rounded-2xl border-2 border-primary bg-card p-6 shadow-xl shadow-primary/10 sm:p-8"
                   : plan.featured
                     ? "relative flex flex-col rounded-2xl border-2 border-primary bg-card p-6 shadow-xl shadow-primary/10 sm:p-8"
                     : "relative flex flex-col rounded-2xl border border-border bg-card p-6 sm:p-8"

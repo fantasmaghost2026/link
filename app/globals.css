@@ -77,77 +77,50 @@
 }
 
 /* ============================================================
-   Edge Lighting (estilo Samsung) — luz constante que recorre
-   el borde de la tarjeta destacada.
+   Resaltado de la tarjeta Elite — resplandor elevado y sutil que
+   la destaca sin tocar el contenido del texto.
    ============================================================ */
-@property --edge-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes edge-lighting-spin {
-  to {
-    --edge-angle: 360deg;
+@keyframes elite-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.99);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
   }
 }
 
-.edge-lighting {
-  position: relative;
+.elite-highlight {
   isolation: isolate;
+  transform: translateZ(0);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Resplandor difuso: SOLO por fuera del borde, nunca en el centro */
-.edge-lighting::after {
+/* Halo difuso detras de la tarjeta (queda solo por fuera). */
+.elite-highlight::before {
   content: "";
   position: absolute;
-  inset: -6px;
-  border-radius: inherit;
-  z-index: -2;
-  background: conic-gradient(
-    from var(--edge-angle),
-    var(--color-accent),
-    var(--color-primary),
-    var(--color-accent),
-    var(--color-primary),
-    var(--color-accent)
-  );
-  filter: blur(12px);
-  opacity: 0.55;
-  animation: edge-lighting-spin 4s linear infinite;
-}
-
-/* Linea de luz que ilumina TODO el borde de forma constante.
-   El mask deja el centro totalmente transparente para no tapar el texto. */
-.edge-lighting::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  inset: -3px;
   z-index: -1;
-  padding: 2.5px;
-  background: conic-gradient(
-    from var(--edge-angle),
-    var(--color-accent),
-    var(--color-primary),
-    color-mix(in oklch, var(--color-accent) 60%, white),
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
     var(--color-primary),
     var(--color-accent)
   );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  animation: edge-lighting-spin 4s linear infinite;
+  filter: blur(18px);
+  opacity: 0.55;
+  animation: elite-glow-pulse 3.5s ease-in-out infinite;
+}
+
+.elite-highlight:hover {
+  transform: translateY(-6px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .edge-lighting::before,
-  .edge-lighting::after {
-    animation-duration: 8s;
+  .elite-highlight::before {
+    animation: none;
   }
 }
