@@ -5,7 +5,19 @@ import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
 import { WhatsAppLeadDialog } from "@/components/whatsapp-lead-dialog"
 
-const plans = [
+type Feature = string | { text: string; highlight?: boolean }
+
+type Plan = {
+  name: string
+  price: string
+  priceNote: string
+  description: string
+  features: Feature[]
+  cta: string
+  featured: boolean
+}
+
+const plans: Plan[] = [
   {
     name: "Avanzado",
     price: "$35",
