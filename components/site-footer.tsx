@@ -6,6 +6,7 @@ const columns = [
     links: [
       { label: "Funciones", href: "#funciones" },
       { label: "Modalidades de pago", href: "#precios" },
+      { label: "Tipos de instalación", href: "#tipos-instalacion" },
     ],
   },
   {

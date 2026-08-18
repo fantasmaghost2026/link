@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Producto", href: "#producto" },
   { label: "Funciones", href: "#funciones" },
   { label: "Modalidades de pago", href: "#precios" },
+  { label: "Tipos de instalación", href: "#tipos-instalacion" },
 ]
 
 // Muestra el ícono navideño desde el 15 hasta el 26 de diciembre y lo retira al pasar la fecha.
