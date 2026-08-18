@@ -21,7 +21,7 @@ const plans: Plan[] = [
   {
     name: "Avanzado",
     price: "$35",
-    priceNote: "USD",
+    priceNote: "USD mensual",
     description: "El comienzo perfecto para vender más en línea.",
     features: [
       "Instalación, configuración y capacitación inicial",
@@ -34,13 +34,12 @@ const plans: Plan[] = [
   {
     name: "Elite",
     price: "$200",
-    priceNote: "USD",
+    priceNote: "USD Anual",
     description: "Máximo control y personalización.",
     features: [
-      "Instalación local con licencia por 1 año",
-      "Licencia renovable cada 365 días",
       "Instalación, configuración y capacitación inicial",
       "Puntos de venta ilimitados",
+      "Disponible solo en red local",
     ],
     cta: "Elegir Elite",
     featured: true,
@@ -48,12 +47,10 @@ const plans: Plan[] = [
   {
     name: "Premium",
     price: "$250",
-    priceNote: "USD",
+    priceNote: "USD Anual",
     description: "Automatiza y optimiza tu negocio.",
     features: [
       "Instalación, configuración y capacitación inicial",
-      "Licencia renovable cada 1 año",
-      "Licencia renovable cada 365 días",
       "Puntos de venta ilimitados",
       { text: "Disponible desde cualquier lugar", highlight: true },
     ],
