@@ -34,7 +34,7 @@ const plans: Plan[] = [
   {
     name: "Elite",
     price: "$200",
-    priceNote: "USD Anual",
+    priceNote: "USD anual",
     description: "Máximo control y personalización.",
     features: [
       "Instalación, configuración y capacitación inicial",
@@ -47,12 +47,13 @@ const plans: Plan[] = [
   {
     name: "Premium",
     price: "$250",
-    priceNote: "USD Anual",
+    priceNote: "USD anual",
     description: "Automatiza y optimiza tu negocio.",
     features: [
       "Instalación, configuración y capacitación inicial",
       "Puntos de venta ilimitados",
       { text: "Disponible desde cualquier lugar", highlight: true },
+      { text: "Soporte y actualizaciones: costo adicional", highlight: true },
     ],
     cta: "Elegir Premium",
     featured: false,
